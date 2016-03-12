@@ -11,12 +11,7 @@ mode        : standalone # {standalone, draft}
 knit        : slidify::knit2slides
 ---
 
-```{r libraries0, echo=TRUE, include=FALSE, results='hide'}
-if (!require("yaml")) {
-  install.packages("yaml", repos="http://cran.rstudio.com/") 
-  library("yaml")
-}
-```
+
 
 ## Developing Data Products Project
 
@@ -24,13 +19,15 @@ A real time APP providing data visualization of financial assets considered good
 
 The Application features a user interface, which allows the user to customize and obtain:
 ### Inputs: Asset's attributes
-```{r}
+
+```r
 ### The financial asset name and its symbol. 
 ### The period of the analysis. Start and end dates. 
 ### Bollinger Bands. Two choices, Bollinger bands or percet. 
 ```
 ### Output: Iteractive Plot
-```{r}
+
+```r
 # Historical stock data. Plot depicting an asset trend, which is the general direction 
 # of a market price of an asset.
 # Bollinger Band Analysis - A Bollinger Band is a band plotted two standard 
@@ -63,41 +60,25 @@ percentage   | bands
 --- .class #id 
 
 
-```{r libraries, echo=TRUE  ,include=FALSE, results='hide'}
 
-if (!require('quantmod')) 
-{
-  install.packages('quantmod');
-  library(quantmod);
-}
-
-if (!require('TTR')) 
-{
-  install.packages('TTR');
-  library(TTR);
-}
-#devtools::install_github('hadley/evaluate')
-#install.packages("TTR")
-#install.packages("quantmod")
-#require ("quantmod")
-#require("TTR")
-library(quantmod)
-library (TTR)
-getSymbols("IMAX")
-```
 
 ## Analysis of Target asset
 ### 'Bars-Plot' - IMAX over 6 months with Bollinger Analysis 
 #### i - IMAX with 'percent' analysis
-```{r Plot2, echo=TRUE, fig.height=2.5, fig.width= 10}
-chartSeries(IMAX,type = "bars",  subset='last 6 months',TA=c(addVo(),addBBands(n = 20, sd = 2, ma= "SMA", draw = "percent", on = -1)))
 
+```r
+chartSeries(IMAX,type = "bars",  subset='last 6 months',TA=c(addVo(),addBBands(n = 20, sd = 2, ma= "SMA", draw = "percent", on = -1)))
 ```
+
+![plot of chunk Plot2](assets/fig/Plot2-1.png)
 
 #### ii - IMAX with 'bands' analysis
-```{r Plot1, echo=TRUE, fig.height=2.5, fig.width= 10}
+
+```r
  chartSeries(IMAX,type = "bars",  subset='last 6 months',TA=c(addVo(),addBBands(n = 20, sd = 2, ma= "SMA", draw = "bands", on = -1)))
 ```
+
+![plot of chunk Plot1](assets/fig/Plot1-1.png)
 
 --- .class #id 
 ## Summary
